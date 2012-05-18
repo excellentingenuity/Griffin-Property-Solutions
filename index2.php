@@ -46,6 +46,11 @@
 </div>
 <div class="container" id="nav_container">
 	<div class="row">
+    	<div class="spacer25">
+        
+        </div>
+    </div>
+	<div class="row">
     	<div class="span3 nav_block">
         	<img class="thumbnail nav_item" src="http://placehold.it/250x250">
             menu
@@ -64,7 +69,7 @@
         </div>
     </div>
 </div>
-<div class="container" id="body_container">
+<div class="container hidden" id="body_container">
 	<div class="row">
     	<div class="span11 main_content">
         	<h2>Lorem Ipsum</h2>
