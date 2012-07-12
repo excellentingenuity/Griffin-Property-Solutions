@@ -11,7 +11,7 @@ $my_log->Su_Write('0', 'page ini');
 <!-- Page designed and coded by James Johnson of Excellent InGenuity LLC, 2012 under contract for ERF Marketing -->
 
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, intial-scale=1.0">
+<meta name="viewport" content="width=device-width, intial-scale=1.0, user-scalable=no">
 <title>Griffin Property Solutions</title>
 
 <link rel="shortcut icon" href="img/fav_icon.png" />
@@ -56,7 +56,7 @@ $(window).resize(function(e) {
     
     	
     	<div class="span12 header_content">
-        <a class="span2" href="index.php"><img class="thumbnail header_logo" alt="Griffin Property Solutions" src="img/logo1.png"></a>
+        <a class="span2" href="index.php"><img class="thumbnail header_logo" alt="Griffin Property Solutions" src="img/logo.png"></a>
         	<span class="pull-right header_links_section">
             <a class="header_links" href="contact.php">Contact Us</a>
             <a class="header_links" href="about.php">About Us</a>

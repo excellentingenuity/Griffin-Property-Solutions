@@ -6,6 +6,19 @@ var images = new Array();   //array to hold the url to images
 	images[0] = "img/fallspark1.jpg";
 	images[1] = "img/fallspark2.jpg";
 	images[2] = "img/greenville1.jpg";
+	images[3] = "img/greenville1.jpg";
+	images[4] = "img/greenville1.jpg";
+	images[5] = "img/greenville1.jpg";
+	images[6] = "img/greenville1.jpg";
+	images[7] = "img/greenville1.jpg";
+	images[8] = "img/greenville1.jpg";
+	images[9] = "img/greenville1.jpg";
+	images[10] = "img/greenville1.jpg";
+	images[11] = "img/greenville1.jpg";
+	images[12] = "img/greenville1.jpg";
+	images[13] = "img/greenville1.jpg";
+	
+	
 	
 var timer = 10000; //length of time before the next image is rotated to, default is 15 seconds
 var effect_timer = 4000; //length of time that the effect takes place, default is 4 seconds
