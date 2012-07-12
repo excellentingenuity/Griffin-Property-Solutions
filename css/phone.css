@@ -1,17 +1,66 @@
 @charset "utf-8";
 /* CSS Document */
+body {
+	background-color:#000000;
+}
+
 #header_container {
-	background-color:rgba(255, 255, 255, .9);	
 	z-index:2;
 	position:relative;
-	
-	
+}
+.header_content {
+	background-color:rgba(255, 255, 255, .8);	
+	z-index:2;
+	position:relative;
 	border-bottom-left-radius:10px;
 	border-bottom-right-radius:10px;
+	
 }
 .header_logo {
 	border:none;	
 	max-height:10em;
+	
+	
+}
+.header_search {
+	
+		
+}
+.mls_search {
+	margin-top:1em;
+	margin-right:2em;
+	background-image:none;
+	background-color:rgba(1, 1, 1, .5) !important;
+	
+	
+}
+.mls_search :hover {
+	background-image:none;
+	background-color:rgba(1, 1, 1, 1) !important;
+	
+}
+.header_links {
+	margin-top:1em;
+	padding:.4em;
+	margin-right:.5em;
+	color:rgba(1, 1, 1, 1);
+	vertical-align:bottom;
+}
+.header_links:visited {
+	color:rgba(1, 1, 1, 1);		
+}
+.header_links:hover {
+	color:#FFFFFF;
+	background-color:rgba(1, 1, 1, .5);
+	text-decoration:none;
+}
+.thumbnail {
+	border-color:rgba(1, 1, 1, .5) !important;
+	box-shadow:rgba(1, 1, 1, .5) !important;
+}
+.thumbnail :selected {
+	border-color:#030 !important;
+	box-shadow:#030 !important;	
 }
 .spacer20 {
 	height:20em;	
@@ -22,38 +71,58 @@
 .spacer30 {
 	height:30em;	
 }
-.nav_block {
-	background-color:rgba(255, 255, 255, .9);	
-	z-index:2;
-	position:relative;
-	margin-top:1em;
-	border-radius:10px;
-	text-align:center;
+#nav_row {
+	margin-top:1em;	
 }
-.nav_item {
-	margin-left:.3em;
-	margin-top:.3em;
-}
-#body_container {
-
-	background-color:rgba(255, 255, 255, .9);	
+#nav_container {
 	z-index:2;
-	position:relative;
-	border-radius:10px;
-	margin-top:1em;
+	position:relative;       
+}
+.fluid_spacer {
+	z-index:1;
+	background:none;
 }
 .main_content {
+	background-color:rgba(255, 255, 255, .8);
+	border-radius:10px;
 	color:#000000;
 	opacity:none;
-	margin-left:4em;
+	padding:2em;
+	
 	z-index:2;
 	position:relative;
+	display:none;
+}
+.v_menu {
+	z-index:2;
+	position:relative;
+	display:none;
+	
+}
+.v_menu_item{
+	z-index:inherit;
+	margin-bottom:12px;
+}
+.v_menu_item_li{
+	z-index:inherit;
+	list-style:none;
+		
+}
+.v_col2 {
+	margin-left:120px;	
+}
+.v_col_top {
+	margin-top:-364px;
+}
+#body_container {
+	margin-top:1em;
+	margin-left:2em;
 }
 #footer_container {
 	background-color:rgba(1, 1, 1, .5);	
 	z-index:2;
 	position:relative;
-	height:10%;
+	/*height:1.5em;*/
 	width:80%;
 	margin-top:1em;
 }

@@ -1,0 +1,7 @@
+BEGIN:VCARD
+VERSION:3.0
+N:Griffin;Mark;;;
+FN:Mark Griffin
+EMAIL;type=INTERNET;type=WORK;type=pref:mark.griffin@griffinpropertysolutions.com
+TEL;type=CELL;type=VOICE;type=pref:864-525-8562
+END:VCARD

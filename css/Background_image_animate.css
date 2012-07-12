@@ -1,0 +1,28 @@
+@charset "utf-8";
+/* CSS Document */
+
+#bg_alpha {
+	/* Stretch background */
+	position:fixed;
+	top:0;
+	left:0;
+	height:100%;
+	width:100%;
+	z-index:0;
+	display:none;
+}
+#bg_bravo {
+	/* Stretch background */
+	
+	position:fixed;
+	top:0;
+	left:0;
+	height:100%;
+	width:100%;
+	z-index:0;
+	display:none;
+}
+body, html {
+	margin:0;
+	padding:0;
+}
