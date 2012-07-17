@@ -5,7 +5,7 @@ $(document).ready(function() {
 });
 function sizer() {
 	var window_height = window.innerHeight;
-   var spacer_height = (window_height * .58);
+   var spacer_height = (window_height * .48);
    $('.fluid_spacer').css('height', spacer_height + 'px');
 }
 function content_expansion (myid){
