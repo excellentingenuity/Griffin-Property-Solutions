@@ -48,4 +48,30 @@
 		}
 	return $my_bool;
 	}
+    function Load_header($screen, $my_page) {
+        //lobal $content_fpath;
+        //global $content_fp;   
+        return "you have" + $screen + $my_page;
+        /* 
+        switch($screen){
+            case "mobile":
+                
+                break;
+            case "tablet":
+                
+                break;
+                
+            case "desktop":
+                
+                break;
+            
+            case "widescreen":
+                //$content_fp = 
+                //Open_content
+                break;
+        }*/
+    }
+    function Load_page(){
+        
+    }
 ?>

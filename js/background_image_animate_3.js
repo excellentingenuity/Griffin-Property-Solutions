@@ -7,16 +7,16 @@ var images = new Array();   //array to hold the url to images
 	images[1] = "img/greenville2.jpg";
 	images[2] = "img/greenville3.jpg";
 	images[3] = "img/greenville4.jpg";
-	//images[4] = "img/greenville (5).jpg";
-	//images[5] = "img/greenville (6).jpg";
-	//images[6] = "img/greenville (7).jpg";
-	//images[7] = "img/greenville (8).jpg";
-	//images[8] = "img/greenville (9).jpg";
-	//images[9] = "img/greenville (10).jpg";
-	//images[10] = "img/greenville (11).jpg";
-	//images[11] = "img/greenville (12).jpg";
-	//images[12] = "img/greenville (13).jpg";
-	//images[13] = "img/greenville (14).jpg";
+	images[4] = "img/greenville5.jpg";
+	images[5] = "img/greenville6.jpg";
+	images[6] = "img/greenville7.jpg";
+	images[7] = "img/greenville8.jpg";
+	images[8] = "img/greenville9.jpg";
+	images[9] = "img/greenville10.jpg";
+	images[10] = "img/greenville11.jpg";
+	images[11] = "img/greenville12.jpg";
+	images[12] = "img/greenville13.jpg";
+	images[13] = "img/greenville14.jpg";
 
 var effects = new Array();
 
@@ -40,11 +40,15 @@ var image_max = images.length;
 
 
 $(document).ready(function() {
+	//$("img#bg_charlie").fadeOut(4000);
 	Load_Next_Image();
 	var localtimer = setInterval(Load_Next_Image, timer);
 	
 });
 function Load_Next_Image () {
+	if ($("img#bg_charlie").is(':visible')){
+		$("img#bg_charlie").fadeOut(4000);
+	}
 	image_count = Math.floor(Math.random()*image_max);
 	switch (current_image) {
 		case 'alpha':

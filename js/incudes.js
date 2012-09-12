@@ -28,10 +28,12 @@ function include_all() {
 	css_includes.push('<link rel="stylesheet" media="all" href="css/bootstrap.css">');
 	css_includes.push('<link rel="stylesheet" media="all" href="css/bootstrap-responsive.css">');
 	css_includes.push('<link rel="stylesheet" media="screen" href="css/base.css">');
-	js_includes.push('<!--[if lt IE 9]><script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script><![endif]-->');
-	js_includes.push('<script src="js/bootstrap.js"></script>');
-	js_includes.push('<script src="js/bootstrap-tab.js"></script>');
-	js_includes.push('<script src="js/bootstrap-button.js"></script>');
+	//js_includes.push('<!--[if lt IE 9]><script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script><![endif]-->');
+	//js_includes.push('<script src="js/bootstrap.js"></script>');
+	//js_includes.push('<script src="js/bootstrap-tab.js"></script>');
+	//js_includes.push('<script src="js/bootstrap-button.js"></script>');
+	js_includes.push("js/bootstrap.js");
+	js_includes.push("js/expander.js");
 	//output_includes();
 	
 }
@@ -46,7 +48,7 @@ function include_desktop() {
 	css_includes.push('<link rel="stylesheet" media="all" href="css/Background_image_animate.css">');
 	css_includes.push('<link rel="stylesheet" media="screen and (min-width: 801px) and (max-width: 1280px)" href="css/desktop.css">');
 	css_includes.push('<script src="js/background_image_animate_3.js"></script>');
-	js_includes.push('<script src="js/expander.js"></script>');	
+	//js_includes.push('<script src="js/expander.js"></script>');	
 	//output_includes();
 	
 }
@@ -63,7 +65,8 @@ function output_includes(){
 		$('head').append(css_includes[i]);
 	}
 	for(i in js_includes){
-		$('head').append(js_includes[i]);
+		//$('head').append(js_includes[i]);
+		$.getScript(js_includes[i]);
 	}
 }
 

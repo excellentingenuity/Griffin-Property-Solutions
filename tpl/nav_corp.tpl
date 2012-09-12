@@ -7,11 +7,5 @@
 			</p>
 			<p class="main_content_p">
 			How can we help you? Click on any of the following property types to learn more about the services offered by our Commercial Brokerage division:
-            <ul>
-            	<li>Industrial</li>
-                <li>Office</li>
-                <li>Retail</li>
-                <li>Multi-family</li>
-                <li>Land</li>
-            </ul>
+
             </p>

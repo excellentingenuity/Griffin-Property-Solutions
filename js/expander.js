@@ -5,44 +5,67 @@ $(document).ready(function() {
 });
 function sizer() {
 	var window_height = window.innerHeight;
-   var spacer_height = (window_height * .48);
+   var spacer_height = (window_height * .10);
    $('.fluid_spacer').css('height', spacer_height + 'px');
 }
 function content_expansion (myid){
 	//var myid = $(this).attr("id");
 	$('.fluid_spacer').hide('slow');
 	$.ajax({ type: "POST", url:"./lib/ajax_interface/interface.php", data: {function: "Load_content", content : myid}, dataType: "html", success: function(data){$("h2.hidden_content").append(data)}});
-	$('.main_content').show('slow');
+	$('.main-content').show('slow');
 	$('.hidden_content').css('visibility', 'visible');
 };
 function content_expansion_replace (myid, destinationid){
 	//var myid = $(this).attr("id");
 	var menu_id;
+	var submenushow;
 	switch (myid){
 		case "nav_corp":
 			menu_id = "v_corp";
+			submenushow = true;
 			break;
 		case "nav_residential":
 			menu_id = "v_res";
+			submenushow = true;
 			break;
 		case "nav_brockerage":
 			menu_id = "v_brock";
+			submenushow = true;
+			break;
+		case "nav_consulting":
+			menu_id = "v_consult";
+			submenushow = true;
+			break;
+		case "about":
+			submenushow = false;
+			break;
+		case "join":
+			submenushow = false;
+			break;
+		case "contact":
+			submenushow = false;
+			break;
+		case "mls":
+			submenushow = false;
 			break;
 	}
-	if($('.main_content').is(":visible")){
-		$('.main_content').fadeOut(2100);
-		$('.v_menu').fadeOut(2100);
+	if($('.main-content').is(":visible")){
+		$('.main-content').fadeOut(2100);
+		//$('.sub-menu').fadeOut(2100);
 		setTimeout(function () {$.ajax({ type: "POST", url:"./lib/ajax_interface/interface.php", data: {function: "Load_content", content : myid}, dataType: "html", success: function(data){content_replace(data, destinationid)}})}, 2100);	
 		
 	} else {
 	$.ajax({ type: "POST", url:"./lib/ajax_interface/interface.php", data: {function: "Load_content", content : myid}, dataType: "html", success: function(data){content_replace(data, destinationid)}});
 	}
 	menu_replace (menu_id);
-	$('.main_content').fadeIn(2100);
-	$('.main_content').css('display', 'inline');
-	$('.v_menu').fadeIn(2100);
-	$('.v_menu').css('display', 'inline');
-
+	$('.main-content').fadeIn(2100);
+	$('.main-content').css('display', 'inline');
+	//$('.sub-menu').fadeIn(2100);
+	if (submenushow == false) {
+		$('.sub-menu').css('display', 'none');
+	}else if(submenushow == true){
+	$('.sub-menu').css('display', 'inline');
+	}
 	
 };
 
@@ -51,69 +74,150 @@ function content_replace (data, id){
 
 };
 function menu_replace (my_menu_id) {
-	
-	var corp = new Array(6); 
-	for (i = 0; i < corp.length; i++) {corp[i] = new Array(2)};
-	corp[0][0] = "industrial";
-	corp[0][1] = "http://dummyimage.com/100x100";
-	corp[1][0] = "industrial";
-	corp[1][1] = "http://dummyimage.com/100x100";
-	corp[2][0] = "industrial";
-	corp[2][1] = "http://dummyimage.com/100x100";
-	corp[3][0] = "industrial";
-	corp[3][1] = "http://dummyimage.com/100x100";
-	corp[4][0] = "industrial";
-	corp[4][1] = "http://dummyimage.com/100x100";
-	corp[5][0] = "industrial";
-	corp[5][1] = "http://dummyimage.com/100x100";
-	
-	var res = new Array(6); 
-	for (i = 0; i < res.length; i++) {res[i] = new Array(2)};
-	res[0][0] = "industrial";
-	res[0][1] = "http://dummyimage.com/100x100";
-	res[1][0] = "industrial";
-	res[1][1] = "http://dummyimage.com/100x100";
-	res[2][0] = "industrial";
-	res[2][1] = "http://dummyimage.com/100x100";
-	res[3][0] = "industrial";
-	res[3][1] = "http://dummyimage.com/100x100";
-	res[4][0] = "industrial";
-	res[4][1] = "http://dummyimage.com/100x100";
-	res[5][0] = "industrial";
-	res[5][1] = "http://dummyimage.com/100x100";
-	
-	
-	var brock = new Array(6); 
-	for (i = 0; i < brock.length; i++) {brock[i] = new Array(2)};
-	brock[0][0] = "industrial";
-	brock[0][1] = "http://dummyimage.com/100x100";
-	brock[1][0] = "industrial";
-	brock[1][1] = "http://dummyimage.com/100x100";
-	brock[2][0] = "industrial";
-	brock[2][1] = "http://dummyimage.com/100x100";
-	brock[3][0] = "industrial";
-	brock[3][1] = "http://dummyimage.com/100x100";
-	brock[4][0] = "industrial";
-	brock[4][1] = "http://dummyimage.com/100x100";
-	brock[5][0] = "industrial";
-	brock[5][1] = "http://dummyimage.com/100x100";
-
-	
-	var attr = $('.v_menu').attr('id');
-	if(my_menu_id != attr) {
-		switch (my_menu_id){
+	var items = new Array();
+	switch (my_menu_id) {
 		case "v_corp":
-			$('.v_menu').attr('id', my_menu_id);
-			$('img.v_menu').each(function(index, myelem){$(myelem).attr('id', corp[index][0]); $(melem).attr('src', corp[index][1]); });
-			break;
+			$('.sub-menu').html('');
+			$('.nav-container').removeClass('sub-menu-red');
+			$('.nav-container').removeClass('sub-menu-blue');
+			$('.nav-container').removeClass('sub-menu-green');
+			$('.nav-container').addClass('sub-menu-yellow');
+			
+		items.push('<li class="sub-meu-li span2"><img class="sub-menu-img" id="industrial" src="img/Commercial/Industrial.png" /></li>');
+		items.push('<li class="sub-meu-li span2"><img class="sub-menu-img" id="office" src="img/Commercial/Office.png" /></li>');
+		items.push('<li class="sub-meu-li span2"><img class="sub-menu-img" id="retail" src="img/Commercial/Retail.png" /></li>');
+		items.push('<li class="sub-meu-li span2"><img class="sub-menu-img" id="income" src="img/Commercial/IncomeProperty.png" /></li>');
+		items.push('<li class="sub-meu-li span2"><img class="sub-menu-img" id="land" src="img/Commercial/Land.png" /></li>');
+		items.push('<li class="sub-meu-li span2"><img class="sub-menu-img" id="search_commercial" src="img/Commercial/SearchCommercial.png" /></li>');
+		break;
 		case "v_res":
-			$('.v_menu').attr('id', my_menu_id);
-			$('img.v_menu').each(function(index, myelem){$(myelem).attr('id', res[index][0]); $(melem).attr('src', res[index][1]); });
+			$('.sub-menu').html('');
+			$('.nav-container').removeClass('sub-menu-red');
+			$('.nav-container').removeClass('sub-menu-blue');
+			$('.nav-container').removeClass('sub-menu-yellow');
+			$('.nav-container').addClass('sub-menu-green');
+			items.push('<li class="sub-meu-li span2">&nbsp;</li>');
+			items.push('<li class="sub-meu-li span2"><img class="sub-menu-img" id="sellers" src="img/Residential/ResidentialSellers.png" /></li>');
+			items.push('<li class="sub-meu-li span2"><img class="sub-menu-img" id="buyers" src="img/Residential/ResidentialBuyers.png" /></li>');
+			items.push('<li class="sub-meu-li span2"><img class="sub-menu-img" id="estate" src="img/Residential/EstateLuxuryHomes.png" /></li>');
+			items.push('<li class="sub-meu-li span2"><img class="sub-menu-img" id="search_residential" src="img/Residential/SearchResidential.png" /></li>');
+			items.push('<li class="sub-meu-li span2">&nbsp;</li>');
 			break;
+		
+		case "v_consult":
+			$('.sub-menu').html('');
+			$('.nav-container').removeClass('sub-menu-red');
+			$('.nav-container').removeClass('sub-menu-yellow');
+			$('.nav-container').removeClass('sub-menu-green');
+			$('.nav-container').addClass('sub-menu-blue');
+			items.push('<li class="sub-meu-li span1">&nbsp;</li>');
+			items.push('<li class="sub-meu-li span2"><img class="sub-menu-img" id="management" src="img/Consulting/CommercPropertyMgmt.png" /></li>');
+			items.push('<li class="sub-meu-li span2"><img class="sub-menu-img" id="investments" src="img/Consulting/CorpServicesInvestments.png" /></li>');
+			items.push('<li class="sub-meu-li span2"><img class="sub-menu-img" id="development" src="img/Consulting/DevelopServices.png" /></li>');
+			items.push('<li class="sub-meu-li span2"><img class="sub-menu-img" id="marketing" src="img/Consulting/MarketingPublicRelations.png" /></li>');
+			items.push('<li class="sub-meu-li span2"><img class="sub-menu-img" id="planning" src="img/Consulting/StrategicPlanning.png" /></li>');
+			items.push('<li class="sub-meu-li span1">&nbsp;</li>');
+			break;
+		
 		case "v_brock":
-			$('.v_menu').attr('id', my_menu_id);
-			$('img.v_menu').each(function(index, myelem){$(myelem).attr('id', brock[index][0]); $(melem).attr('src', brock[index][1]); });
+			$('.sub-menu').html('');
+			$('.nav-container').removeClass('sub-menu-yellow');
+			$('.nav-container').removeClass('sub-menu-blue');
+			$('.nav-container').removeClass('sub-menu-green');
+			$('.nav-container').addClass('sub-menu-red');
+			items.push('<li class="sub-meu-li span2">&nbsp;</li>');
+			items.push('<li class="sub-meu-li span2">&nbsp;</li>');
+			items.push('<li class="sub-meu-li span2"><img class="sub-menu-img" id="bis_buyers" src="img/Brokerage/Buyers.png" /></li>');
+			items.push('<li class="sub-meu-li span2"><img class="sub-menu-img" id="bis_sellers" src="img/Brokerage/Sellers.png" /></li>');
+			items.push('<li class="sub-meu-li span2">&nbsp;</li>');
+			items.push('<li class="sub-meu-li span2">&nbsp;</li>');
+		break;
+	
+	}
+	
+	for( i in items){
+		$('.sub-menu').append(items[i]);
+	}
+	//TODO:add other submenus 
+	//also handle on hover change source of image to the glow image - on mousehover substring and add glow on mouseunhover remove
+};
+function hover_menu(menu_id){
+	var destination;
+	switch (menu_id){
+	case "nav_corp":
+		menu_id = "v_corp";
+		destination = '.hv-corp';
+		break;
+	case "nav_residential":
+		menu_id = "v_res";
+		destination = '.hv-residential';
+		break;
+	case "nav_brockerage":
+		menu_id = "v_brock";
+		destination = '.hv-brokerage';
+		break;
+	case "nav_consulting":
+		menu_id = "v_consult";
+		destination = '.hv-consulting';
+		break;
+	}
+	var items = new Array();
+	switch (menu_id) {
+		case "v_corp":
+			$(destination).html("");	
+		items.push('<li class="v_menu_item_li submenu-hover-li"><img class="v_menu_item" id="industrial" src="img/Commercial/Industrial.png" /></li>');
+		items.push('<li class="v_menu_item_li submenu-hover-li"><img class="v_menu_item" id="office" src="img/Commercial/Office.png" /></li>');
+		items.push('<li class="v_menu_item_li submenu-hover-li"><img class="v_menu_item" id="retail" src="img/Commercial/Retail.png" /></li>');
+		items.push('<li class="v_menu_item_li submenu-hover-li v_col2 v_col_top"><img class="v_menu_item" id="income" src="img/Commercial/IncomeProperty.png" /></li>');
+		items.push('<li class="v_menu_item_li submenu-hover-li v_col2"><img class="v_menu_item" id="land" src="img/Commercial/Land.png" /></li>');
+		items.push('<li class="v_menu_item_li submenu-hover-li v_col2"><img class="v_menu_item" id="search_commercial" src="img/Commercial/SearchCommercial.png" /></li>');
+		break;
+		case "v_res":
+			$(destination).html("");
+			items.push('<li class="v_menu_item_li submenu-hover-li"><img class="v_menu_item" id="sellers" src="img/Residential/ResidentialSellers.png" /></li>');
+			items.push('<li class="v_menu_item_li submenu-hover-li"><img class="v_menu_item" id="buyers" src="img/Residential/ResidentialBuyers.png" /></li>');
+			items.push('<li class="v_menu_item_li submenu-hover-li"><img class="v_menu_item" id="estate" src="img/Residential/EstateLuxuryHomes.png" /></li>');
+			items.push('<li class="v_menu_item_li submenu-hover-li"><img class="v_menu_item" id="search_residential" src="img/Residential/SearchResidential.png" /></li>');
 			break;
-		}
+		
+		case "v_consult":
+			$(destination).html("");
+			items.push('<li class="v_menu_item_li submenu-hover-li"><img class="v_menu_item" id="management" src="img/Consulting/CommercPropertyMgmt.png" /></li>');
+			items.push('<li class="v_menu_item_li submenu-hover-li"><img class="v_menu_item" id="investments" src="img/Consulting/CorpServicesInvestments.png" /></li>');
+			items.push('<li class="v_menu_item_li submenu-hover-li"><img class="v_menu_item" id="development" src="img/Consulting/DevelopServices.png" /></li>');
+			items.push('<li class="v_menu_item_li v_col2 v_col_top submenu-hover-li"><img class="v_menu_item" id="marketing" src="img/Consulting/MarketingPublicRelations.png" /></li>');
+			items.push('<li class="v_menu_item_li v_col2 submenu-hover-li"><img class="v_menu_item" id="planning" src="img/Consulting/StrategicPlanning.png" /></li>');
+		break;
+		
+		case "v_brock":
+			$(destination).html("");
+			items.push('<li class="v_menu_item_li submenu-hover-li"><img class="v_menu_item" id="bis_buyers" src="img/Brokerage/Buyers.png" /></li>');
+			items.push('<li class="v_menu_item_li submenu-hover-li"><img class="v_menu_item" id="bis_sellers" src="img/Brokerage/Sellers.png" /></li>');
+		break;
+	
+	}
+	
+	for( i in items){
+		$(destination).append(items[i]);
+	}
+};
+function hide_hover_menu(menu_id){
+	switch (menu_id){
+	case "nav_corp":
+		menu_id = "v_corp";
+		$('.hv-corp').html("&nbsp;");
+		break;
+	case "nav_residential":
+		menu_id = "v_res";
+		$('.hv-residential').html("&nbsp;");
+		break;
+	case "nav_brockerage":
+		menu_id = "v_brock";
+		$('.hv-brokerage').html("&nbsp;");
+		break;
+	case "nav_consulting":
+		menu_id = "v_consult";
+		$('.hv-consulting').html("&nbsp;");
+		break;
 	}
 }

@@ -22,6 +22,16 @@
 	z-index:0;
 	/*display:none;*/
 }
+#bg_charlie {
+    position:fixed;
+    top:0;
+    left:0;
+    height:100%;
+    width:100%;
+    z-index:0;
+     
+    visibility:visible;
+}
 body, html {
 	margin:0;
 	padding:0;
