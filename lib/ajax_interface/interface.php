@@ -23,7 +23,7 @@ $my_log = new Log_XML($log_dir ."/log", "interface");
 Call function sent by POST method with any variables sent
 */
 
-$my_function = $_POST['function'];
+$my_function = $_POST['my_function'];
 $my_log->Su_Write('0', 'function variable: '.(string)$my_function);
 $my_i = 0;
 $my_vars;

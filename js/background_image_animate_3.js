@@ -29,7 +29,7 @@ var effects = new Array();
 	 
 	
 	
-var timer = 15000; //length of time before the next image is rotated to, default is 15 seconds
+var timer = 10000; //length of time before the next image is rotated to, default is 15 seconds
 var effect_timer = 4000; //length of time that the effect takes place, default is 4 seconds
 var current_image = 'alpha'; //current image that is visible, default is alpha
 var last_image = 'bravo';

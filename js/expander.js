@@ -11,7 +11,7 @@ function sizer() {
 function content_expansion (myid){
 	//var myid = $(this).attr("id");
 	$('.fluid_spacer').hide('slow');
-	$.ajax({ type: "POST", url:"./lib/ajax_interface/interface.php", data: {function: "Load_content", content : myid}, dataType: "html", success: function(data){$("h2.hidden_content").append(data)}});
+	$.ajax({ type: "POST", url:"./lib/ajax_interface/interface.php", data: {my_function:"Load_content", content:myid}, dataType: "html", success: function(data){$("h2.hidden_content").append(data)}});
 	$('.main-content').show('slow');
 	$('.hidden_content').css('visibility', 'visible');
 };
@@ -48,14 +48,23 @@ function content_expansion_replace (myid, destinationid){
 		case "mls":
 			submenushow = false;
 			break;
+		case "search_residential":
+			submenushow = false;
+			myid = "mls";
+			break;
+		case "search_commercial":
+			submenushow = false;
+			myid = "mls";
+			break;
+			
 	}
 	if($('.main-content').is(":visible")){
 		$('.main-content').fadeOut(2100);
 		//$('.sub-menu').fadeOut(2100);
-		setTimeout(function () {$.ajax({ type: "POST", url:"./lib/ajax_interface/interface.php", data: {function: "Load_content", content : myid}, dataType: "html", success: function(data){content_replace(data, destinationid)}})}, 2100);	
+		setTimeout(function () {$.ajax({ type: "POST", url:"./lib/ajax_interface/interface.php", data: {my_function:"Load_content", content:myid}, dataType: "html", success: function(data){content_replace(data, destinationid)}})}, 2100);	
 		
 	} else {
-	$.ajax({ type: "POST", url:"./lib/ajax_interface/interface.php", data: {function: "Load_content", content : myid}, dataType: "html", success: function(data){content_replace(data, destinationid)}});
+	$.ajax({ type: "POST", url:"./lib/ajax_interface/interface.php", data: {my_function:"Load_content", content:myid}, dataType: "html", success: function(data){content_replace(data, destinationid)}});
 	}
 	menu_replace (menu_id);
 	$('.main-content').fadeIn(2100);

@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<xs:schema>
+
+
+<xs:element name="Log">
+	<xs:complexType mixed="true">
+		<xs:sequence>
+			<xs:element name="errorid" type="xs:positiveInteger"/>
+			<xs:element name="date" type="xs:date"/>
+			<xs:element name="errormsg" type="xs:string"/>
+		</xs:sequence>
+	</xs:complexType>
+</xs:schema>
